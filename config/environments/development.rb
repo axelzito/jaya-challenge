@@ -1,4 +1,4 @@
-require "active_support/core_ext/integer/time"
+require 'active_support/core_ext/integer/time'
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
@@ -50,7 +50,8 @@ Rails.application.configure do
   # Highlight code that triggered database queries in logs.
   config.active_record.verbose_query_logs = true
 
-
+  # config.hosts << /[a-z0-9]+\.ngrok\.io/
+  config.hosts << '40e7-168-194-162-149.ngrok.io'
   # Raises error for missing translations.
   # config.i18n.raise_on_missing_translations = true
 
