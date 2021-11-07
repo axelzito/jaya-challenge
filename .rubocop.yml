@@ -14,6 +14,7 @@ AllCops:
     - "db/migrate/*"
     - "docker/*"
     - "vendor/**/*"
+    - 'app/services/**/*'
 
 # https://github.com/evilmartians/terraforming-rails/tree/master/tools/lint_env
 Lint/Env:
@@ -37,12 +38,12 @@ Lint/Env:
 Metrics/BlockLength:
   IgnoredMethods:
     [
-      "describe",
-      "context",
-      "FactoryBot.define",
-      "configure",
-      "factory",
-      "specify",
+        "describe",
+        "context",
+        "FactoryBot.define",
+        "configure",
+        "factory",
+        "specify",
     ]
   Exclude:
     - "config/routes.rb"
@@ -70,7 +71,7 @@ Style/AsciiComments:
 
 # ignore comments when calculating line length
 Layout/LineLength:
-  IgnoredPatterns: ['(\A|\s)#']
+  IgnoredPatterns: [ '(\A|\s)#' ]
 
 # allow free Gemfile organization
 Bundler/OrderedGems:

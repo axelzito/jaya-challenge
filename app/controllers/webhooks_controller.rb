@@ -15,8 +15,7 @@ class WebhooksController < ApplicationController
              params.as_json
            end
 
-    issue = Issue.create(action: data['action'])
-    Event.create(payload: data, issue_id: issue.id)
+    ::SaveIssueEventService.call(data)
 
     render nothing: true
   end
