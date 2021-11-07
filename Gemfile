@@ -32,6 +32,9 @@ gem 'octokit', '~> 4.0'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'rspec-rails', '~> 5.0'
+  gem 'factory_bot_rails', '~> 6.2'
+  gem 'faker', '~> 2.19'
 end
 
 group :development do
@@ -44,6 +47,12 @@ group :development do
   gem 'rubocop-rails', require: false
   gem 'test-prof'
   gem 'spring'
+end
+
+group :test do
+  gem 'shoulda-matchers', '~> 5.0'
+  gem 'simplecov', '~> 0.21.2', require: false
+  gem 'database_cleaner-active_record', '~> 2.0'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
