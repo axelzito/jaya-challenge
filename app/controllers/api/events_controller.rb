@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 module Api
   class EventsController < ApplicationController
-    before_action :set_api_event, only: [:show, :update, :destroy]
+    before_action :set_api_event, only: %i[show update destroy]
 
     # GET /api/events
     def index
@@ -19,9 +21,9 @@ module Api
       @event = Event.new(api_event_params)
 
       if @event.save
-        render json: @event, status: :created, location: @event
+        render json: @event, status: 201, location: @event
       else
-        render json: @event.errors, status: :unprocessable_entity
+        render json: @event.errors, status: 422
       end
     end
 
@@ -30,7 +32,7 @@ module Api
       if @event.update(api_event_params)
         render json: @event
       else
-        render json: @event.errors, status: :unprocessable_entity
+        render json: @event.errors, status: 422
       end
     end
 

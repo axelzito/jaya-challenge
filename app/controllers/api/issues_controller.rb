@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 module Api
   class IssuesController < ApplicationController
-    before_action :set_api_issue, only: [:show, :update, :destroy]
+    before_action :set_api_issue, only: %i[show update destroy]
 
     # GET /api/issues
     def index
@@ -19,9 +21,9 @@ module Api
       @issue = Issue.new(api_issue_params)
 
       if @issue.save
-        render json: @issue, status: :created, location: @issue
+        render json: @issue, status: 201, location: @issue
       else
-        render json: @issue.errors, status: :unprocessable_entity
+        render json: @issue.errors, status: 422
       end
     end
 
@@ -30,7 +32,7 @@ module Api
       if @issue.update(api_issue_params)
         render json: @issue
       else
-        render json: @issue.errors, status: :unprocessable_entity
+        render json: @issue.errors, status: 422
       end
     end
 
