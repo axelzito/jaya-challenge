@@ -13,7 +13,7 @@ class SaveIssueEventService < ApplicationService
   private
 
   def create_issue
-    @issue = Issue.create(action: @data[:action])
+    @issue = Issue.create(action: @data['action'])
   end
 
   def create_event

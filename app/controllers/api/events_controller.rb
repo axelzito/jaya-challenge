@@ -3,10 +3,11 @@
 module Api
   class EventsController < ApplicationController
     before_action :set_api_event, only: %i[show update destroy]
+    before_action :set_events, only: %i[index]
 
     # GET /api/events
     def index
-      @events = Event.all
+      @events = @events.presence || Event.all
 
       render json: @events
     end
@@ -46,6 +47,10 @@ module Api
     # Use callbacks to share common setup or constraints between actions.
     def set_api_event
       @event = Event.find(params[:id])
+    end
+
+    def set_events
+      @events = Event.where(issue_id: params[:issue_id])
     end
 
     # Only allow a list of trusted parameters through.

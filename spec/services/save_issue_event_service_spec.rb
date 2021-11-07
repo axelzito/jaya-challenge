@@ -4,13 +4,11 @@ require 'rails_helper'
 
 RSpec.describe SaveIssueEventService, type: :lib do
   let(:params) do
-    {
-      id: '123',
-      action: 'created',
-      payload: {
-        'comment' => 'nice'
-      }
-    }
+    { 'id' => '123',
+      'action' => 'edited',
+      'changes' =>
+        { 'body' =>
+            { 'from' => 'att' } } }
   end
   let(:response) { described_class.call(params) }
 
