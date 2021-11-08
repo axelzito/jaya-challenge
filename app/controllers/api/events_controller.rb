@@ -2,6 +2,7 @@
 
 module Api
   class EventsController < ApplicationController
+    before_action :http_basic_authenticate unless Rails.env.test?
     before_action :set_api_event, only: %i[show update destroy]
     before_action :set_events, only: %i[index]
 
@@ -56,6 +57,15 @@ module Api
     # Only allow a list of trusted parameters through.
     def api_event_params
       params.fetch(:api_event, {})
+    end
+
+    def http_basic_authenticate
+      authenticate_or_request_with_http_basic do |username, password|
+        return error_message('The username does not exist in our base!') unless authenticate_username(username)
+        return error_message('Wrong password!') unless authenticate_password(password)
+
+        true
+      end
     end
   end
 end

@@ -2,6 +2,7 @@
 
 module Api
   class IssuesController < ApplicationController
+    before_action :http_basic_authenticate unless Rails.env.test?
     before_action :set_api_issue, only: %i[show update destroy]
 
     # GET /api/issues
@@ -51,6 +52,15 @@ module Api
     # Only allow a list of trusted parameters through.
     def api_issue_params
       params.fetch(:api_issue, {})
+    end
+
+    def http_basic_authenticate
+      authenticate_or_request_with_http_basic do |username, password|
+        return error_message('The username does not exist in our base!') unless authenticate_username(username)
+        return error_message('Wrong password!') unless authenticate_password(password)
+
+        true
+      end
     end
   end
 end

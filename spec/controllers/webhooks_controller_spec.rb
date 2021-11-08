@@ -23,6 +23,7 @@ RSpec.describe WebhooksController, type: :controller do
 
     before do
       request.headers['HTTP_X_GITHUB_EVENT'] = params[:event_type]
+      # request.headers['Content-Type'] = 'application/json'
       request.accept = 'application/json'
     end
 

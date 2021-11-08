@@ -3,6 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe Api::IssuesController, type: :controller do
+  include AuthHelper
   let(:json) { JSON.parse(response.body) }
 
   describe 'GET index' do
@@ -10,6 +11,7 @@ RSpec.describe Api::IssuesController, type: :controller do
     let(:event) { create(:event, issue: issue) }
 
     before do
+      # http_login('xxx', 'xxx')
       get :index, params: { issue_id: issue.id }
     end
 
